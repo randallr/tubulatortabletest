@@ -1,0 +1,159 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.3.2/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.3.2/js/tabulator.min.js"></script>
+</head>
+
+<body>
+    <div id="example-table"></div>
+</body>
+<script>
+    $("#example-table").tabulator({
+        height: "400px",
+        layout:'fitColumns',
+        movableCols: true,
+        movableRows: true,
+        tooltips: true,
+        columns: [{
+                title: "Ahref",
+                field: "ahref",
+                sorter: "string",
+                formatter:"link",
+                width: 390,
+                editable: true
+            },
+            {
+                title: "h2 - posttitle",
+                field: "h2posttitle",
+                sorter: "string",
+                align: "left",
+                width: 390,
+                editable: true
+            },
+            {
+                title: "h3 - Post Subtitle",
+                field: "h3postsubtitle",
+                width: 280,
+                sorter: "string",
+                editable: true
+            },
+            {
+                title: "p - Post Metadate",
+                field: "ppostmetadate",
+                align: "center",
+                sorter: "number",
+                width: 340,
+                editable: true
+            },
+            {
+                title: "h4 - Summ",
+                field: "h4summ",
+                width: 250,
+                sorter: "string",
+                sortable: false,
+                editable: true
+            },
+        ],
+    });
+
+    var sampleData = [{
+    "ahref": "http://www.havingadventures.com/tdpost/tourdivide15.html",
+    "h2posttitle": "Day 15 - Wide open spaces",
+    "h3postsubtitle": "Leaving Montana (finally)",
+    "ppostmetadate": "Tuesday, June 23, 2015 Lima to Macks Inn",
+    "h4summ": "7:23am, 14h 15mm, 89 miles, 2,566 ft of climbing"
+},{
+    "ahref": "http://www.havingadventures.com/tdpost/tourdivide16.html",
+    "h2posttitle": "Day 16 - Scenic Byway and some assistance",
+    "h3postsubtitle": "Past Mesa Falls towards the Tetons",
+    "ppostmetadate": "Wednesday, June 24, 2015 Island Park to Flagg Ranch, WY",
+    "h4summ": "8:14 AM 81.1mi 3,374ft"
+},{
+    "ahref": "http://www.havingadventures.com/tdpost/tourdivide17.html",
+    "h2posttitle": "Day 17 - Grand Teton NP in AM, Togwotee in PM",
+    "h3postsubtitle": "Lost tourists and finding hidden lakes",
+    "ppostmetadate": "Thursday, June 25, 2015 Flagg Ranch to Lava Mountain Lodge, WY",
+    "h4summ": "08:14 AM, 61.8mi, 4,042ft of climbing"
+},{
+    "ahref": "http://www.havingadventures.com/tdpost/tourdivide18.html",
+    "h2posttitle": "Day 18 - Union Pass only better",
+    "h3postsubtitle": "The Devils Hole Trail and riding the divide",
+    "ppostmetadate": "Friday, June 26, 2015 Lava Mountain Lodge to Pinedale, WY",
+    "h4summ": "6:24 AM 82.6mi 4,157ft of climbing"
+},{
+    "ahref": "http://www.havingadventures.com/tdpost/tourdivide19.html",
+    "h2posttitle": "Day 19 - Wyoming - after the mountains",
+    "h3postsubtitle": "A long, hot day in the desert",
+    "ppostmetadate": "Saturday, June 27, 2015  Pinedale to Atlantic City, WY",
+    "h4summ": "07:52 AM, 87.7mi, 3,560ft of climbing"
+},{
+    "ahref": "http://www.havingadventures.com/tdpost/tourdivide20.html",
+    "h2posttitle": "Day 20 - Another long day in Wyomings Great Basin",
+    "h3postsubtitle": "Water supply and disappearing jeep trails",
+    "ppostmetadate": "Sunday, June 28, 2015 Atlantic City to Wamsutter, WY",
+    "h4summ": "07:15 AM, 97.9mi, 2,712ft of climbing"
+},{
+    "ahref": "http://www.havingadventures.com/tdpost/tourdivide21.html",
+    "h2posttitle": "Day 21 - Brush Mountain Lodge",
+    "h3postsubtitle": "My birthday in a slice of heaven",
+    "ppostmetadate": "Monday, June 29, 2015 - Wamsutter, WY to Brush Mtn Lodge, CO",
+    "h4summ": "7:06 AM 81.9mi 3,928ft of climbing"
+},{
+    "ahref": "http://www.havingadventures.com/tdpost/tourdivide22.html",
+    "h2posttitle": "Day 22 - Colorado Mountains",
+    "h3postsubtitle": "Long steady climbs and descents",
+    "ppostmetadate": "Tuesday, June 30, 2015 Brush Mountain Lodge to Steamboat Springs, CO",
+    "h4summ": "07:55 AM, 50.5mi, 3,220ft of climbing"
+},{
+    "ahref": "http://www.havingadventures.com/tdpost/tourdivide23.html",
+    "h2posttitle": "Day 23 - A long day out on the road",
+    "h3postsubtitle": "A giant coast into Kremmling and mind games",
+    "ppostmetadate": "Wednesday, July 1, 2015 Steamboat Springs to Dillon, CO",
+    "h4summ": "06:55 AM, 108.7mi, 6,441ft of climbing"
+},{
+    "ahref": "http://www.havingadventures.com/tdpost/tourdivide24.html",
+    "h2posttitle": "Day 24 - Dillon Reservoir, Breckenridge and Boreas Pass",
+    "h3postsubtitle": "Highest pass on my tour",
+    "ppostmetadate": "Thursday, July 2, 2015  Dillon to Hartsel, CO",
+    "h4summ": "7:00 AM 68.0mi  3,507ft of climbing"
+},{
+    "ahref": "http://www.havingadventures.com/tdpost/tourdivide25.html",
+    "h2posttitle": "Day 25 - July weather",
+    "h3postsubtitle": "More afternoon rains and washboard roads",
+    "ppostmetadate": "Friday, July 3, 2015 Hartsel to Salida, CO",
+    "h4summ": "7:51 AM 48.4mi 2,300ft of climbing"
+},{
+    "ahref": "http://www.havingadventures.com/tdpost/tourdivide26.html",
+    "h2posttitle": "Day 26 - Marshall Pass and the Colorado Trail",
+    "h3postsubtitle": "Tepees, Rain and the 4th of July",
+    "ppostmetadate": "Saturday, July 4, 2015 Salida to Sargents, CO",
+    "h4summ": "07:30 AM, 46.4mi, 4,382ft of climbing"
+},{
+    "ahref": "http://www.havingadventures.com/tdpost/tourdivide27.html",
+    "h2posttitle": "Day 27 - Lighting and Thunder in the afternoon",
+    "h3postsubtitle": "Two passes and outrunning the rain",
+    "ppostmetadate": "Sunday, July 5, 2015 Sargents to Del Norte, CO",
+    "h4summ": "07:49 AM, 101.0mi, 5,182ft of climbing"
+},{
+    "ahref": "http://www.havingadventures.com/tdpost/tourdivide28.html",
+    "h2posttitle": "Day 28 - Getting some rest and plotting my course",
+    "h3postsubtitle": "The Library, Amish Cinnamon Rolls and Wild Boar",
+    "ppostmetadate": "Monday, July 6, 2015 Del Norte",
+    "h4summ": "Sleeping in at the Windsor Hotel - zero ft of climbing"
+
+}
+]
+
+    $("#example-table").tabulator("setData", sampleData);
+
+    $(window).resize(function() {
+        $("#example-table").tabulator("redraw");
+    });
+    console.log(sampleData)
+</script>
+
+</html>

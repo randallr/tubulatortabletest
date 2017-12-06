@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        .highlight {
+            background-color: yellow !important;
+        }
+        .remo {
+            padding: 10px;
+            background-color: aquamarine;
+        }
+        span{
+            padding: 5px;
+            border: 2px solid #eee;
+        }
+        .remo span:first-child {
+            background-color: lightgreen;
+            margin-left: 15px;
+        }
+        .remo span:last-child {
+            background-color: red;
+            margin-left: 15px;
+        }
+        input[type="text"] {
+            width: 7em;
+        }
+        input[type="number"] {
+            width: 4em;
+        }
+        .btn {
+            padding: 5px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+     <p>TD Header List </p
+    
+    <div id="output1">TD List<br></div>
+    <table>
+        <tr>
+            <th>ahref</th>
+            <th>h2posttitle</th>
+            <th>h3postsubtitle</th>
+            <th>h4summ</th>
+            <th>h4summ</th>
+        </tr>
+        <tr>
+            <td>ahref</td>
+            <td>h2posttitle</td>
+            <td>h3postsubtitle</td>
+            <td>h4summ</td>
+            <td>h4summ</td>
+        </tr>
+    
+    </table>
+    <br>
+</body>
+
+    <script>
+        var output1 =document.getElementById('output1');
+    var output2 =document.getElementById('output2');  
+    
+    var hr = new XMLHttpRequest();
+    var url = "https://api.myjson.com/bins/9ny1t"
+    
+    hr.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+           var myObj = JSON.parse(hr.responseText);
+            console.log(myObj);
+            for(var i=0;i<myObj.headerData.length;i++){
+                output1.innerHTML += "<tr><td>" +
+                "<div class=`post-preview`> <a href="
+                 + myObj.headerData[i].ahref + "></td>" +
+                "<h2>" +  myObj.headerData[i].h2posttitle + "</h2>" +
+                "<h3>" + myObj.headerData[i].h3postsubtitle + "</h3> </a>" + 
+                "<p>" + myObj.headerData[i].ppostmetadate + "</p>" +
+                "<h4>" + myObj.headerData[i].h4summ + "</h4></div>"
+                ;
+            }
+            
+        }
+    }
+    
+    hr.open("GET",url,true);
+    
+    hr.send();
+    console.log(hr);
+    
+    
+    
+</script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </script>

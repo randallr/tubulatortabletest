@@ -1,0 +1,96 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.3.2/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.3.2/js/tabulator.min.js"></script>
+</head>
+
+<body>
+    <div id="example-table"></div>
+</body>
+<script>
+    var hr = new XMLHttpRequest();
+    var url = "https://api.myjson.com/bins/14bqv3"
+    var sampleData = ""
+    // https://api.myjson.com/bins/14bqv3
+    // https://api.myjson.com/bins/9ny1t
+
+    hr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var myObj = JSON.parse(hr.responseText);
+            var sampleData = myObj;
+
+            console.log(myObj);
+            console.log(sampleData);
+        }
+    }
+    hr.open("GET", url, true);
+
+    hr.send();
+    console.log(hr);
+
+
+    $("#example-table").tabulator({
+        height: "400px",
+        layout: 'fitColumns',
+        movableCols: true,
+        movableRows: true,
+        tooltips: true,
+        columns: [{
+                title: "Ahref",
+                field: "ahref",
+                sorter: "string",
+                formatter: "link",
+                width: 390,
+                editable: true
+            },
+            {
+                title: "h2 - posttitle",
+                field: "h2posttitle",
+                sorter: "string",
+                align: "left",
+                width: 390,
+                editable: true
+            },
+            {
+                title: "h3 - Post Subtitle",
+                field: "h3postsubtitle",
+                width: 280,
+                sorter: "string",
+                editable: true
+            },
+            {
+                title: "p - Post Metadate",
+                field: "ppostmetadate",
+                align: "center",
+                sorter: "number",
+                width: 340,
+                editable: true
+            },
+            {
+                title: "h4 - Summ",
+                field: "h4summ",
+                width: 250,
+                sorter: "string",
+                sortable: false,
+                editable: true
+            },
+        ],
+    });
+
+
+
+
+
+    $("#example-table").tabulator("setData", sampleData);
+
+    $(window).resize(function() {
+                $("#example-table").tabulator("redraw");
+
+        });
+</script>
+
+</html>
