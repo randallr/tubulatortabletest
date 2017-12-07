@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>
+        Having Adventures
+    </title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css"
+          integrity="sha256-wT6CFc7EKRuf7uyVfi+MQNHUzojuHN2pSw0YWFt2K5E="
+          crossorigin="anonymous"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.3.2/css/tabulator.min.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+<script>
+
+    const HavingAdventures = {}
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+        m.mount(document.body, HavingAdventures.Main)
+    })
+
+    HavingAdventures.model = {
+        SampleData: function SampleData() {
+            var data = []
+
+            return {
+                load: function () {
+                    m.request({
+                        url: "https://api.myjson.com/bins/14bqv3"
+                    }).then(function (response) {
+                        data = response.sampleData
+                    })
+                },
+                getData: function () {
+                    return data
+                }
+            }
+        }
+    }
+
+    HavingAdventures.data = {
+        sampleData: new HavingAdventures.model.SampleData()
+    }
+
+    HavingAdventures.Main = {
+        oninit: function (vnode) {
+            HavingAdventures.data.sampleData.load()
+        },
+
+        view: function (vnode) {
+            return [
+                m('.ui center aligned icon header', "Having Adventures"),
+                m(HavingAdventures.Table, {data: HavingAdventures.data.sampleData.getData()})
+            ]
+        }
+    }
+
+    HavingAdventures.Table = {
+
+        onupdate: function (vnode) {
+            $(vnode.dom).tabulator("setData", vnode.attrs.data);
+        },
+
+        oncreate: function (vnode) {
+            $(vnode.dom).tabulator({
+                height: "400px",
+                layout: 'fitColumns',
+                movableCols: true,
+                movableRows: true,
+                tooltips: true,
+                columns: [{
+                    title: "Ahref",
+                    field: "ahref",
+                    sorter: "string",
+                    formatter: "link",
+                    width: 390,
+                    editable: true
+                },
+                    {
+                        title: "h2 - posttitle",
+                        field: "h2posttitle",
+                        sorter: "string",
+                        align: "left",
+                        width: 390,
+                        editable: true
+                    },
+                    {
+                        title: "h3 - Post Subtitle",
+                        field: "h3postsubtitle",
+                        width: 280,
+                        sorter: "string",
+                        editable: true
+                    },
+                    {
+                        title: "p - Post Metadate",
+                        field: "ppostmetadate",
+                        align: "center",
+                        sorter: "number",
+                        width: 340,
+                        editable: true
+                    },
+                    {
+                        title: "h4 - Summ",
+                        field: "h4summ",
+                        width: 250,
+                        sorter: "string",
+                        sortable: false,
+                        editable: true
+                    },
+                ],
+            });
+
+            $(vnode.dom).tabulator("setData", vnode.attrs.data);
+
+        },
+
+        view: function (vnode) {
+            return m('div')
+        }
+    }
+
+</script>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+        integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.3.2/js/tabulator.min.js"
+        type="text/javascript"></script>
+<script src="https://unpkg.com/mithril" type="text/javascript"></script>
+<script src="https://unpkg.com/bss" type="text/javascript"></script>
+
+</body>
